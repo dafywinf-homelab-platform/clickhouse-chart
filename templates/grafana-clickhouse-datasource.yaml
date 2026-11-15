@@ -1,3 +1,4 @@
+{{- if .Values.enabled }}
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
@@ -27,3 +28,4 @@ spec:
       password: {{ .Values.grafanaClickhouseDatasource.password }}
       timeInterval: 5s
       tlsSkipVerify: true
+{{- end }}

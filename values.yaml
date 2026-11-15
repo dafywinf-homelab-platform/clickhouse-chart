@@ -1,3 +1,9 @@
+# DISABLED (2026-11-15) - ClickHouse has been decommissioned from the Proxmox K3s cluster.
+# When false, every ClickHouse resource in this chart renders nothing; the operator dependency is
+# still installed so it can remove the ClickHouseInstallation/KeeperInstallation cleanly.
+# See README.md "Disabling / Decommissioning" before setting this back to true.
+enabled: false
+
 clickhouseCluster:
   shardsCount: 1
   replicasCount: 1
