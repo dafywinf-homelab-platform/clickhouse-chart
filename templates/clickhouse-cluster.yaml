@@ -1,3 +1,4 @@
+{{- if .Values.enabled }}
 apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
@@ -16,7 +17,7 @@ spec:
       default/networks/ip: "::/0"
       default/profile: "default"
       default/quota: "default"
-      default/password: ""
+      default/password: "default"
     clusters:
       - name: "cluster"
         layout:
@@ -40,3 +41,4 @@ spec:
           resources:
             requests:
               storage: {{ .Values.clickhouseCluster.logStorage }}
+{{- end }}

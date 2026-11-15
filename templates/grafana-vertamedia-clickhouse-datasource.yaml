@@ -1,0 +1,28 @@
+{{- if .Values.enabled }}
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: grafana-vertamedia-clickhouse-datasource
+spec:
+  allowCrossNamespaceExport: true
+  plugins:
+    - name: vertamedia-clickhouse-datasource
+      version: 3.4.4
+  instanceSelector:
+    matchLabels:
+      dashboards: {{ .Values.grafanaClickhouseDatasource.grafanaLabelSelector }}
+
+  datasource:
+    name: vertamedia-clickhouse-datasource
+    type: vertamedia-clickhouse-datasource
+    editable: true
+    access: proxy
+    isDefault: false
+    url: "clickhouse-{{ .Release.Name }}.{{ .Release.Namespace}}.svc.cluster.local:{{ .Values.grafanaClickhouseDatasource.httpPort }}"
+    jsonData:
+      defaultDatabase: {{ .Values.grafanaClickhouseDatasource.defaultDatabase }}
+      username: {{ .Values.grafanaClickhouseDatasource.username }}
+      password: {{ .Values.grafanaClickhouseDatasource.password }}
+      timeInterval: 5s
+      tlsSkipVerify: true
+{{- end }}

@@ -1,3 +1,4 @@
+{{- if .Values.enabled }}
 {{- $now := now | quote }}
 apiVersion: batch/v1
 kind: Job
@@ -31,3 +32,4 @@ spec:
         - name: setup-sql-volume
           configMap:
             name: {{ .Release.Name }}-setup-sql
+{{- end }}
