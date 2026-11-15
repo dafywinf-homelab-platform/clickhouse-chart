@@ -16,7 +16,7 @@ spec:
       default/networks/ip: "::/0"
       default/profile: "default"
       default/quota: "default"
-      default/password: ""
+      default/password: "default"
     clusters:
       - name: "cluster"
         layout:

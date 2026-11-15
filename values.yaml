@@ -14,10 +14,20 @@ clickhouseKeeper:
 altinity-clickhouse-operator:
   metrics:
     enabled: true
-    serviceMonitor:
-      enabled: true
-      interval: 30s
-      scrapeTimeout: 10s
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 10s
+  dashboards:
+    enabled: true # Enable Grafana dashboards for ClickHouse Operator
+
+grafanaClickhouseDatasource:
+  username: "default" # ClickHouse username
+  password: "default" # ClickHouse password
+  defaultDatabase: "default" # Default database for ClickHouse datasource
+  grafanaLabelSelector: "kube-monitoring" # Label selector for Grafana datasource
+  port: 9000 # Port for ClickHouse native protocol
+  httpPort: 8123 # Port for ClickHouse HTTP interface
 
 clickhouseSQLConfigMap:
   initSQL: "init-scripts/hello-schema.sql"
